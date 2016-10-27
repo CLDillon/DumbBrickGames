@@ -10,13 +10,13 @@ public class charectermove : MonoBehaviour {
     public float gravity = 9f;
     public Camera MainCamera;
     private Vector3 direction;
-    private Rigidbody charecter;
+    private Rigidbody2D charecter;
 
 	// Use this for initialization
 	void Start () {
 
         movePlayer = transform;
-        charecter = GetComponent<Rigidbody>();
+        charecter = GetComponent<Rigidbody2D>();
         
 	}
 	
@@ -36,7 +36,7 @@ public class charectermove : MonoBehaviour {
                     screenPos.z = 0;
                     direction = (screenPos - Input.mousePosition).normalized;
                 }
-            }Aim();
+            }
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -47,10 +47,5 @@ public class charectermove : MonoBehaviour {
 
 
 
-    private void Aim()
-    {
-        float Sx = direction.x * force;
-        float Sy = direction.y * force;
 
-    }
 }
