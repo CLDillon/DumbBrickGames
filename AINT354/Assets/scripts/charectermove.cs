@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class charectermove : MonoBehaviour {
+public class charectermove : MonoBehaviour
+{
 
-    
+
 
     private Transform movePlayer;
     public float force = 10;
@@ -12,55 +13,66 @@ public class charectermove : MonoBehaviour {
     private Vector2 direction;
     private Rigidbody2D charecter;
 
-	// Use this for initialization
-	void Start () {
+    private bool isClicked = false;
+
+  //  Use this for initialization
+    void Start () {
 
         movePlayer = transform;
         charecter = GetComponent<Rigidbody2D>();
+
+    }
+
+ //   Update is called once per frame
+    void FixedUpdate()
+    {
         
-	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
-        //if (Input.GetMouseButtonDown(0))
-        //   {
-        //       RaycastHit hit;
-        //       Ray ray = MainCamera.ScreenPointToRay(Input.mousePosition);
-
-
-        //       if(Physics.Raycast(ray, out hit))
-        //       {
-        //           Debug.DrawRay(transform.position, hit.point, Color.red);
-        //           if (hit.transform.tag == "Player")
-        //           {
-        //               Vector3 screenPos = MainCamera.WorldToScreenPoint(movePlayer.position);
-
-        //               screenPos.z = 0;
-        //               direction = (screenPos - Input.mousePosition).normalized;
-        //           }
-        //       }
-        //   }
-
-        //   if (Input.GetMouseButtonUp(0))
-        //   {
-        //       charecter.velocity = direction * 1000;
-        //   }
-
         if (Input.GetMouseButtonDown(0))
         {
-            Vector3 screenPos = MainCamera.WorldToScreenPoint(movePlayer.position);
+            Vector3 mousePos = Input.mousePosition;
+            mousePos.z = 10;
 
-            screenPos.z = 0;
-            direction = (screenPos - Input.mousePosition).normalized;
+            Vector3 screenPos = Camera.main.ScreenToWorldPoint(mousePos);
+
+            RaycastHit2D hit = Physics2D.Raycast(screenPos, Vector2.zero);
+
+            //Debug.Log(hit.collider.name);
+
+            if (hit.collider != null)
+            {
+                //Debug.DrawRay(transform.position, hit.point, Color.red);
+                if (hit.transform.tag == "Player")
+                {
+                   // Debug.Log("Mouse Button down!");
+                    isClicked = true;
+                }
+                else if (hit.transform.tag != "Player")
+                {
+                    isClicked = false;
+                }
+            }
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            if (isClicked == false)
+                return;
+
+            Vector3 mousePos = Input.mousePosition;
+            mousePos.z = 10;
+
+            Vector3 screenPos = Camera.main.ScreenToWorldPoint(mousePos);
+
+            direction = (screenPos - movePlayer.position).normalized;
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            charecter.velocity = direction * force;
-        }
+            charecter.velocity = -direction * force;
 
-        Debug.Log(charecter.velocity);
-	}
+            isClicked = false;
+        }
+    }
 
 
 
