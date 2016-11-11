@@ -7,13 +7,16 @@ public class charectermove : MonoBehaviour
 
 
     private Transform movePlayer;
-    public float force = 10;
+    public float forceMultiplier = 1.5f;
     public float gravity = 9f;
     public Camera MainCamera;
     private Vector2 direction;
     private Rigidbody2D charecter;
 
+    private float magnitude = 0;
+
     private bool isClicked = false;
+    //private bool inAir = false;
 
   //  Use this for initialization
     void Start () {
@@ -43,8 +46,10 @@ public class charectermove : MonoBehaviour
                 //Debug.DrawRay(transform.position, hit.point, Color.red);
                 if (hit.transform.tag == "Player")
                 {
-                   // Debug.Log("Mouse Button down!");
-                    isClicked = true;
+                   
+                        // Debug.Log("Mouse Button down!");
+                        isClicked = true;
+                    
                 }
                 else if (hit.transform.tag != "Player")
                 {
@@ -55,20 +60,27 @@ public class charectermove : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
+        
+
             if (isClicked == false)
                 return;
-
+           
             Vector3 mousePos = Input.mousePosition;
             mousePos.z = 10;
 
             Vector3 screenPos = Camera.main.ScreenToWorldPoint(mousePos);
 
-            direction = (screenPos - movePlayer.position).normalized;
+            Vector3 tempDirection = screenPos - movePlayer.position;
+
+            magnitude = tempDirection.magnitude * forceMultiplier;
+         //   Debug.Log(magnitude);
+
+            direction = tempDirection.normalized;
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            charecter.velocity = -direction * force;
+            charecter.velocity = -direction * magnitude;
 
             isClicked = false;
         }
