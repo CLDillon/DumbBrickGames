@@ -1,1 +1,4 @@
 Have gotten 2d stuff fromm asset store must creddit
+
+got gwenerate code from
+http://catlikecoding.com/unity/tutorials/runner/
