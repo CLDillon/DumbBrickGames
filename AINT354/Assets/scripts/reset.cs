@@ -12,11 +12,21 @@ public class reset : MonoBehaviour {
     // Use this for initialization
     void OnTriggerEnter2D(Collider2D Collider2D)
     {
-     //   Debug.Log("triiger enter");
+        //   Debug.Log("triiger enter");
 
         if (Collider2D.gameObject.tag == "Player")
-            // Application.LoadLevel(level);
-            SceneManager.LoadScene(2);
+        
+        {
+
+            MessageSystem.BroadcastDeath();
+           // SceneManager.LoadScene(level);
+        }
+        else
+        {
+            
+        }
     }
+    
+    
 }
 

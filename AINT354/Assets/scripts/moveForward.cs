@@ -10,7 +10,7 @@ public class moveForward : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.Translate(Vector2.up * Time.deltaTime);
+        transform.Translate(Vector2.up * Time.deltaTime * 20f);
         transform.Translate(Vector2.up * Time.deltaTime, Space.World);
 	}
 }

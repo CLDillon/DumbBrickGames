@@ -146,7 +146,7 @@ public class charectermove : MonoBehaviour
     private void CheckGrounded()
     {
         m_Grounded = Physics2D.OverlapArea(top_left.position, bottom_right.position, m_WhatIsGround);
-        Debug.Log(m_Grounded);
+     //   Debug.Log(m_Grounded);
 
         //Vector3 direction = (transform.position - new Vector3(transform.position.x, transform.position.y + 20, transform.position.z)).normalized;
         //RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 15.0f);
