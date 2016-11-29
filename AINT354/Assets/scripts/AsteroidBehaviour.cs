@@ -9,18 +9,24 @@ public class AsteroidBehaviour : MonoBehaviour
     {
         //register for event
         MessageSystem.onDeathScenario += KillYourself;
-     
+        MessageSystem.onGoodbyeAsteroid += Goodbye;
 	}
 
     void OnDisable()
     {
         //deregister from event
         MessageSystem.onDeathScenario -= KillYourself;
+        MessageSystem.onGoodbyeAsteroid -= Goodbye;
     }
 	
 	private void KillYourself()
     {
         Destroy(gameObject);
         
+    }
+
+    private void Goodbye()
+    {
+        Destroy(gameObject);
     }
 }

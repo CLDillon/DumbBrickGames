@@ -19,11 +19,12 @@ public class reset : MonoBehaviour {
         {
 
             MessageSystem.BroadcastDeath();
+            MessageSystem.PlayerReset();
            // SceneManager.LoadScene(level);
         }
-        else
+        else if( Collider2D.gameObject.tag == "platform")
         {
-            
+            //MessageSystem.onGoodbyeAsteroid();
         }
     }
     

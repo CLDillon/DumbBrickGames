@@ -10,8 +10,10 @@ public class generateAsteroids : MonoBehaviour {
     public float spawnMaxX = 10;
     public float spawnMinY = -10;
     public float spawnMaxY = 10;
-    private float nextAsteroidTime = 2.5f;
-    public float period = 0.1f;
+    private float nextAsteroidTime = 1.5f;
+    public float period = 1f;
+
+
 
     //public GameObject rndPlace;
 
@@ -45,20 +47,28 @@ public class generateAsteroids : MonoBehaviour {
         //1. Empty game object assign instantiated object to it
         //2. Get the gameObject and change position
         //NOTE: Random.Range gives back a float between 2 values(min - max)
-       
+
         // Debug.Log("SetOBJ");
-        
+                
+
+
         
 
        GameObject tempObject = Instantiate(obj[Random.Range(0, obj.GetLength(0))], transform.position, Quaternion.identity) as GameObject;
 
         Vector3 tempPosition = tempObject.transform.position;
+    
+
+
 
         tempPosition.x += Random.Range(spawnMinX, spawnMaxX);
         tempPosition.y += Random.Range(spawnMinY, spawnMaxY);
 
         tempObject.transform.position = tempPosition;
+
     }
+
+   
 
 }
  
