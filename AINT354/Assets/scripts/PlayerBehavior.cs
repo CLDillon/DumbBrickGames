@@ -22,5 +22,6 @@ public class PlayerBehavior : MonoBehaviour
     {
         //gameObject.transform(0, 0, 0);
         transform.position = playerStartPosition;
+      
     }
 }

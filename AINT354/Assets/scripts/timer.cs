@@ -1,34 +1,46 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class timer : MonoBehaviour {
 
+    public Text timmerLable;
 
-    private float seconds = 0.0f;
-    private float minutes = 0.0f;
-    private float hours = 0.0f;
+    private float time;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Use this for initialization
+    void Start() {
 
-        seconds += Time.deltaTime;
-        if (seconds > 60)
-        {
-            minutes += 1;
-            seconds = 0;
-        }
-        if (minutes > 60)
-        {
-            hours += 1;
-            minutes = 0;
-        }
-        Debug.Log(hours);
-        Debug.Log(minutes);
-        Debug.Log(seconds);
-	}
+    }
+
+
+    // Update is called once per frame
+    void Update() {
+
+        time += Time.deltaTime;
+
+        var minutes = time / 60;
+        var seconds = time % 60;
+        var fraction = (time * 100) % 100;
+
+        timmerLable.text = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, fraction);
+    }
+
+    void OnEnable()
+    {
+        //register for event
+        MessageSystem.onTimmerResetSenario += TimerReset;
+
+    }
+
+    void OnDisable()
+    {
+        //deregister from event
+        MessageSystem.onTimmerResetSenario -= TimerReset;
+    }
+    private void TimerReset()
+    {
+        time = Time.timeSinceLevelLoad;
+    }
+
 }

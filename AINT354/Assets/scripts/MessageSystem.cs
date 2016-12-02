@@ -7,7 +7,11 @@ public static class MessageSystem
     public static event DeathScenarioHandle onDeathScenario;
    // public static event DeathScenarioHandle onKillzoneSenario;
     public static event DeathScenarioHandle onPlayerSenario;
-    public static event DeathScenarioHandle onGoodbyeAsteroid;
+    //  public static event DeathScenarioHandle onGoodbyeAsteroid;
+
+
+    public delegate void TimmerHandle();
+    public static event TimmerHandle onTimmerResetSenario;
 
     public static void BroadcastDeath()
     {
@@ -25,11 +29,20 @@ public static class MessageSystem
         onPlayerSenario();
     }
 
-    public static void ByeAsteroids()
+
+    public static void TimerReset()
     {
-        if (onGoodbyeAsteroid == null)
+        if (onTimmerResetSenario == null)
             return;
 
-        onGoodbyeAsteroid();
+        onTimmerResetSenario();
     }
+
+    //public static void ByeAsteroids()
+    //{
+    //    if (onGoodbyeAsteroid == null)
+    //        return;
+
+    //    onGoodbyeAsteroid();
+    //}
 }
