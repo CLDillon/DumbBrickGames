@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class reset : MonoBehaviour {
 
 
-
+   
     
     public string level = "MainLevel";
 
@@ -20,6 +20,8 @@ public class reset : MonoBehaviour {
             MessageSystem.BroadcastDeath();
             MessageSystem.PlayerReset();
             MessageSystem.TimerReset();
+
+            
            // SceneManager.LoadScene(level);
         }
         else if (Collider2D.gameObject.tag == "Platform")
