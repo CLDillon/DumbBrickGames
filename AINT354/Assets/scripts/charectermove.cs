@@ -24,11 +24,31 @@ public class charectermove : MonoBehaviour
     private bool isClicked = false;
     //private bool inAir = false;
 
-  //  Use this for initialization
+
+        //dots
+    public GameObject dotPrefab;
+    private Transform[] m_bunchOfDots;
+
+
+
+
+
+    //  Use this for initialization
     void Start () {
 
         movePlayer = transform;
         charecter = GetComponent<Rigidbody2D>();
+
+        m_bunchOfDots = new Transform[10];
+
+        for (int i = 0; i < m_bunchOfDots.Length; i++)
+        {
+            GameObject tempObj = Instantiate(dotPrefab) as GameObject;
+            m_bunchOfDots[i] = tempObj.transform;
+
+            m_bunchOfDots[i].gameObject.SetActive(false);
+
+        }
 
     }
 
@@ -45,7 +65,17 @@ public class charectermove : MonoBehaviour
     {
         CheckGrounded();
         charecterJump();
-      
+        Aim();
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            for (int i = 0; i < m_bunchOfDots.Length; i++)
+            {
+                m_bunchOfDots[i].gameObject.SetActive(false);
+            }
+
+        }
+
     }
     void charecterJump()
     {
@@ -186,4 +216,15 @@ public class charectermove : MonoBehaviour
 
     }
 
-}
+    private void Aim()
+    {
+       
+      
+
+          
+            
+        
+    }
+
+
+    }
