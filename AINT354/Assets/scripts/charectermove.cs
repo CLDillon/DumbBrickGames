@@ -6,40 +6,32 @@ public class charectermove : MonoBehaviour
 
     public Transform top_left;
     public Transform bottom_right;
-
     private Transform movePlayer;
     public float forceMultiplier = 1.5f;
     public float gravity = 9f;
+    public float forceDots = 10f;
     public Camera MainCamera;
     private Vector2 direction;
     private Rigidbody2D charecter;
-
     [SerializeField]private LayerMask m_WhatIsGround;
     const float k_GroundedRadius = 0.00000000000002f;
     private bool m_Grounded = false;
    // private Transform m_GroundCheck;
-
     private float magnitude = 0;
-
     private bool isClicked = false;
     //private bool inAir = false;
-
-
         //dots
     public GameObject dotPrefab;
     private Transform[] m_bunchOfDots;
 
-
-
-
-
+    
     //  Use this for initialization
     void Start () {
 
         movePlayer = transform;
         charecter = GetComponent<Rigidbody2D>();
 
-        m_bunchOfDots = new Transform[10];
+        m_bunchOfDots = new Transform[5];
 
         for (int i = 0; i < m_bunchOfDots.Length; i++)
         {
@@ -47,9 +39,7 @@ public class charectermove : MonoBehaviour
             m_bunchOfDots[i] = tempObj.transform;
 
             m_bunchOfDots[i].gameObject.SetActive(false);
-
         }
-
     }
 
     private void Awake()
@@ -58,8 +48,6 @@ public class charectermove : MonoBehaviour
       //  m_GroundCheck = transform.Find("GroundCheck");
 
     }
-
-
     //   Update is called once per frame
     void FixedUpdate()
     {
@@ -73,9 +61,7 @@ public class charectermove : MonoBehaviour
             {
                 m_bunchOfDots[i].gameObject.SetActive(false);
             }
-
         }
-
     }
     void charecterJump()
     {
@@ -88,9 +74,7 @@ public class charectermove : MonoBehaviour
         {
             Vector3 mousePos = Input.mousePosition;
             mousePos.z = 10;
-
             Vector3 screenPos = Camera.main.ScreenToWorldPoint(mousePos);
-
             RaycastHit2D hit = Physics2D.Raycast(screenPos, Vector2.zero);
 
             //Debug.Log(hit.collider.name);
@@ -100,10 +84,8 @@ public class charectermove : MonoBehaviour
                 //Debug.DrawRay(transform.position, hit.point, Color.red);
                 if (hit.transform.tag == "Player")
                 {
-
                     // Debug.Log("Mouse Button down!");
                     isClicked = true;
-
                 }
                 else if (hit.transform.tag != "Player")
                 {
@@ -114,28 +96,20 @@ public class charectermove : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-
-
             if (isClicked == false)
                 return;
-
             Vector3 mousePos = Input.mousePosition;
             mousePos.z = 10;
-
             Vector3 screenPos = Camera.main.ScreenToWorldPoint(mousePos);
-
             Vector3 tempDirection = screenPos - movePlayer.position;
-
             magnitude = tempDirection.magnitude * forceMultiplier;
             //   Debug.Log(magnitude);
-
             direction = tempDirection.normalized;
         }
 
         if (Input.GetMouseButtonUp(0))
         {
             charecter.velocity = -direction * magnitude;
-
             isClicked = false;
         }
     }
@@ -218,13 +192,17 @@ public class charectermove : MonoBehaviour
 
     private void Aim()
     {
-       
-      
+        float Sx = direction.x * forceDots;
+        float Sy = direction.y * forceDots;
 
-          
-            
-        
-    }
+        for (int i = 0; i < m_bunchOfDots.Length; i++)
+        {
+            float t = i * 0.5f;
+            float dx = Sx * t;
+            float dy = (Sy * t) - (0.5f * gravity * (t * t));
 
-
+            m_bunchOfDots[i].position = new Vector3(dx + movePlayer.position.x, dy + movePlayer.position.y, 0.0f);
+            m_bunchOfDots[i].gameObject.SetActive(true);
+        }
+      }
     }
