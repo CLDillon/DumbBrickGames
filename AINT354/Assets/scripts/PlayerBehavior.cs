@@ -31,10 +31,7 @@ public class PlayerBehavior : MonoBehaviour
     //void PlayerdeathCount()
         
     //{
-        
-
     //    int deathCount = 3;
-
     //    if ( deathCount == 0)
     //    {
     //        SceneManager.LoadScene(4);

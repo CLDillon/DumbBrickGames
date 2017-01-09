@@ -7,40 +7,55 @@ using UnityEngine.UI;
 public class DeathCounter : MonoBehaviour {
 
     public Text deathLable;
-  
-    //void OnEnable()
-    //{
-    //    //register for event
-    //    //Currently deactivates my kill Zone
-    //    MessageSystem.onPlayerSenario += PlayerdeathCount;
+    public  int PlayerDeathCounter = 4;
+    
 
-    //}
+    void Start()
+    {
+      //  Debug.Log(deathLable);
+        deathLable.text = "Lives: " + PlayerDeathCounter;
+        PlayerdeathCount();
+    }
+
+
+    void OnEnable()
+    {
+        //register for event
+        //Currently deactivates my kill Zone
+        MessageSystem.onPlayerSenario += PlayerdeathCount;
+
+    }
 
 
     // Update is called once per frame
 
 
-        
+
 
 
     void PlayerdeathCount() {
 
+        //
+        //Debug.Log("Death test");
+        
 
-        var PlayerDeathCounter = 3;
 
+       var  tepDeth = PlayerDeathCounter - 1;
 
-        PlayerDeathCounter =- 1;
-      
+        PlayerDeathCounter = tepDeth;
+
+       // Debug.Log(PlayerDeathCounter);
 
             if (PlayerDeathCounter == 0)
         {
+            new WaitForSeconds(5);
             SceneManager.LoadScene(4);
         }
+        deathLable.text = "Lives: " + PlayerDeathCounter;
 
-        deathLable.text = string.Format("{0}", PlayerDeathCounter);
     }
 
-
+ 
 
     //void PlayerdeathCount()
 

@@ -18,13 +18,21 @@ public class timer : MonoBehaviour {
     void Update() {
 
         time += Time.deltaTime;
+        string tempTime;
+
 
         var minutes = time / 60;
         var seconds = time % 60;
         var fraction = (time * 100) % 100;
 
-        timmerLable.text = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, fraction);
+        tempTime = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, fraction);
+
+        timmerLable.text = tempTime;
+       
+
     }
+
+
 
     void OnEnable()
     {
@@ -40,7 +48,11 @@ public class timer : MonoBehaviour {
     }
     private void TimerReset()
     {
-        time = Time.timeSinceLevelLoad;
-    }
 
+        Debug.Log(timmerLable.text);
+        
+     
+      time = Time.deltaTime;
+    }
+   
 }
