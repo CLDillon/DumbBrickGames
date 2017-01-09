@@ -11,7 +11,7 @@ public class reset : MonoBehaviour {
 
     // Use this for initialization
     void OnTriggerEnter2D(Collider2D Collider2D)
-    {
+    {  
        // Debug.Log("I hit: " + Collider2D.gameObject.tag);
         if (Collider2D.gameObject.tag == "Player")
         
@@ -20,6 +20,7 @@ public class reset : MonoBehaviour {
             MessageSystem.BroadcastDeath();
             MessageSystem.PlayerReset();
             MessageSystem.TimerReset();
+
 
             
            // SceneManager.LoadScene(level);

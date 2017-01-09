@@ -32,6 +32,8 @@ public class generateAsteroids : MonoBehaviour {
             nextAsteroidTime += period;
              Spawn();
         }
+
+       
        
     }
 
@@ -65,6 +67,8 @@ public class generateAsteroids : MonoBehaviour {
         tempPosition.y += Random.Range(spawnMinY, spawnMaxY);
 
         tempObject.transform.position = tempPosition;
+
+       
 
     }
 
