@@ -12,7 +12,7 @@ Trello https://trello.com/b/zhXKoNYo/endless-scroller
 Twitter https://twitter.com/DumbBrickGames
 Tumblr http://dumb-brick-games.tumblr.com/
 
-The Zip tablet should contain the programs/files for applae ad android apps.
+
 
 
 My game is a casual game where you try to get your chaecter to last as long as possible. You get three lives. each time you time you die the timmer resets
