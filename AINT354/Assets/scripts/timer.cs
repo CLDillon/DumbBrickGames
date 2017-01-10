@@ -51,8 +51,6 @@ public class timer : MonoBehaviour {
 
         Debug.Log(timmerLable.text);
         
-
-        
        
 
      

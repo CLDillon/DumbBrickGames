@@ -9,9 +9,14 @@ public static class MessageSystem
     public static event DeathScenarioHandle onPlayerSenario;
     //  public static event DeathScenarioHandle onGoodbyeAsteroid;
 
+        
+
+    
 
     public delegate void TimmerHandle();
     public static event TimmerHandle onTimmerResetSenario;
+    public static event TimmerHandle onLifeReset;
+
 
     public static void BroadcastDeath()
     {
@@ -37,6 +42,16 @@ public static class MessageSystem
 
         onTimmerResetSenario();
     }
+
+
+
+    // the below life reset canlels out the life goins down
+    //    public static void PlayerDeathCounter()
+    //{
+    //    if (onLifeReset == null)
+    //        return;
+    //    onLifeReset();
+    //}
 
     //public static void ByeAsteroids()
     //{

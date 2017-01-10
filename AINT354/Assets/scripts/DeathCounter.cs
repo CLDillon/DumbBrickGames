@@ -33,6 +33,21 @@ public class DeathCounter : MonoBehaviour {
 
 
 
+
+
+    //void OnEnable()
+    //{
+    //    //register for event
+    //    MessageSystem.onLifeReset += PlayerdeathCount;
+
+    //}
+
+    //void OnDisable()
+    //{
+    //    //deregister from event
+    //    MessageSystem.onLifeReset -= PlayerdeathCount;
+    //}
+
     void PlayerdeathCount() {
 
         //
@@ -51,11 +66,10 @@ public class DeathCounter : MonoBehaviour {
             new WaitForSeconds(5);
             SceneManager.LoadScene(4);
         }
+            if (deathLable.text != null)
         deathLable.text = "Lives: " + PlayerDeathCounter;
 
     }
-
- 
 
     //void PlayerdeathCount()
 
