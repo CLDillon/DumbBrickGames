@@ -51,6 +51,10 @@ public class timer : MonoBehaviour {
 
         Debug.Log(timmerLable.text);
         
+
+        
+       
+
      
       time = Time.deltaTime;
     }
